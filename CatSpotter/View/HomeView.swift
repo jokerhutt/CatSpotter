@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+
+    
+    
     var body: some View {
         
         let columns = [
@@ -54,7 +58,7 @@ struct HomeView: View {
         .navigationTitle("Your Cats")
         .navigationBarItems(
             leading: EditButton(),
-            trailing: NavigationLink("Add", destination: {})
+            trailing: NavigationLink("Add", destination: AddView())
         )
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
