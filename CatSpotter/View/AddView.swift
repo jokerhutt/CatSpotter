@@ -11,7 +11,10 @@ import SwiftUI
 @MainActor
 struct AddView: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @StateObject private var vm = AddViewModel()
+    
+    @ObservedObject var homeVM: HomeViewModel
     
     var body: some View {
         
@@ -46,7 +49,7 @@ struct AddView: View {
                 )
             }
           }
-            Button(action: {}, label: {
+            Button(action: saveButtonPressed, label: {
                 Text("Save".uppercased())
                     .foregroundColor(Color(.white))
                     .font(.headline)
@@ -59,12 +62,21 @@ struct AddView: View {
         .padding(14)
         .navigationTitle("Add a cat")
     }
+    
+    func saveButtonPressed() {
+        let imagesDataArray = vm.images.compactMap {
+            $0.jpegData(compressionQuality: 0.8)
+        }
+        homeVM.addItem(name: vm.name, description: vm.description, images: imagesDataArray)
+        presentationMode.wrappedValue.dismiss()
+    }
+    
 }
 
 struct AddView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AddView()
+            AddView(homeVM: HomeViewModel())
         }
     }
 }

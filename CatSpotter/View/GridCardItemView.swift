@@ -10,21 +10,20 @@ import SwiftUI
 
 
 struct GridCardItemView: View {
-
+    
     let item: CatItemModel
 
     var body: some View {
         
         VStack(alignment: .leading, spacing: 16.0) {
-            if let url = URL(string: item.imageUrl) {
-                AsyncImage(url: url) {image in
-                    image
-                        .resizable()
-                        .frame(width: .infinity, height: 200)
-                } placeholder: {
-                    Color.gray.opacity(0.2)
-                        .frame(width: .infinity, height: 200)
-                }
+            if let data = item.imageData.first,
+               let uiImage = UIImage(data: data) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .frame(width: .infinity, height: 200)
+            } else {
+                Color.gray.opacity(0.2)
+                    .frame(width: .infinity, height: 200)
             }
             cardText.padding(.horizontal, 8)
         }
@@ -51,6 +50,6 @@ struct GridCardItemView: View {
 
 struct GridCardItemView_Previews: PreviewProvider {
     static var previews: some View {
-        GridCardItemView(item: CatItemModel(name: "Tabby", imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs4dYNQvhQU2EbfVuxgcHUsU85RU2nzlppeQ&s"))
+        GridCardItemView(item: DevData.items[0])
     }
 }

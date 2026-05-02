@@ -7,20 +7,22 @@
 
 import Foundation
 
-struct CatItemModel: Identifiable {
+struct CatItemModel: Identifiable, Codable {
     
     let id: String
     let name: String
-    let imageUrl: String
+    let description: String
+    let imageData: [Data]
     
-    init(id: String = UUID().uuidString, name: String, imageUrl: String) {
+    init(id: String = UUID().uuidString, name: String, description: String, imageData: [Data]) {
         self.id = id
         self.name = name
-        self.imageUrl = imageUrl
+        self.description = description
+        self.imageData = imageData
     }
     
     func updateCat() -> CatItemModel {
-        return CatItemModel(id: id, name: name, imageUrl: imageUrl)
+        return CatItemModel(id: id, name: name, description: description, imageData: imageData)
     }
     
 }
