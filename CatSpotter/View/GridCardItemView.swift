@@ -39,7 +39,7 @@ struct GridCardItemView: View {
                 .font(.headline)
             HStack(spacing: 4.0) {
                 Image(systemName: "clock.arrow.circlepath")
-                Text("Last spotted 10 min ago")
+                Text("10 min ago")
             }.foregroundColor(.gray)
             .padding(.bottom, 16)
         }

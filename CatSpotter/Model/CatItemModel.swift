@@ -14,15 +14,21 @@ struct CatItemModel: Identifiable, Codable {
     let description: String
     let imageData: [Data]
     
-    init(id: String = UUID().uuidString, name: String, description: String, imageData: [Data]) {
+    let latitude: Double
+    let longitude: Double
+
+    
+    init(id: String = UUID().uuidString, name: String, description: String, imageData: [Data], latitude: Double = 52.373870, longitude: Double = 4.899330) {
         self.id = id
         self.name = name
         self.description = description
         self.imageData = imageData
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
     func updateCat() -> CatItemModel {
-        return CatItemModel(id: id, name: name, description: description, imageData: imageData)
+        return CatItemModel(id: id, name: name, description: description, imageData: imageData, latitude: latitude, longitude: longitude, )
     }
     
 }

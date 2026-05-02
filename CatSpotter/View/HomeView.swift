@@ -23,7 +23,11 @@ struct HomeView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
                     ForEach(vm.items) { item in
-                        GridCardItemView(item: item)
+                        NavigationLink {
+                            CatView(item: item, homeVM: vm)
+                        } label: {
+                            GridCardItemView(item: item)
+                        }
                     }
                 }
                 .padding(.horizontal, 16)
